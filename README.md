@@ -25,4 +25,6 @@ so it would look something like that :
     ...
   }
 }
+
+Or pull the project locally and use the Package Manager (Window>Package Manager), adding the package.json file present in the root of the folder with the `+` button.
 ```
