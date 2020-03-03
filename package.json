@@ -3,9 +3,7 @@
     "displayName": "Prefab Lightmap Baker",
     "version": "1.0.0",
     "unity": "2019.1",
-
-    "description": "This package provides X, Y, and Z. \n\nTo find out more, click the \"View documentation\" link.",
-    
+    "description": "More info at : https://github.com/nukadelic/Unity-Lightmap-Prefab-Baker",
     "keywords": ["Prefab", "Lightmap", "Bake", "Baker"],
     "category": "Tools",
     "dependencies": { }
