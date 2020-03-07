@@ -8,8 +8,6 @@ namespace PrefabLightMapBaker
 {
     public static class Baker
     {
-        static float timer = 0f;
-
         static void UpdateLightSettings()
         {
             if(Lightmapping.giWorkflowMode != Lightmapping.GIWorkflowMode.OnDemand)
@@ -30,33 +28,22 @@ namespace PrefabLightMapBaker
 
         public static void Start()
         {
-            timer = Time.time;
-
             Debug.ClearDeveloperConsole();
 
             UpdateLightSettings( );
 
             // 1. Prepare objects for bake
 
-            Debug.Log( 1 );
-
             // Fetch PrefabVaker components from current active scene 
             EditorUtils.GetAllPrefabs( ).ForEach( x => {
 
                 // Set all nested object as static for bake
                 EditorUtils.LockForBake( x.gameObject );
-                
-                // ( optional ) scan & ovveride components
-                if( Window.overrideComponents ) PanelComponentsOverride.Apply( x.gameObject );
 
             } );
 
-            Debug.Log( 2 );
-
             // 2. Display progress dialog and await for bake complete in `BakeCompelte()`
             BakeStart( );
-
-            Debug.Log( 3 );
 
             // 3. Start baking 
             Lightmapping.BakeAsync( );
@@ -72,7 +59,9 @@ namespace PrefabLightMapBaker
 
         static void BakeUpdate( )
         {
-            if( EditorUtility.DisplayCancelableProgressBar( "Boiling Prefabs", "Baking them lights...", Lightmapping.buildProgress ) )
+            var p = Lightmapping.buildProgress;
+
+            if( EditorUtility.DisplayCancelableProgressBar( "Boiling Prefabs", "Baking them lights...", p ) )
             {
                 Lightmapping.ForceStop( );
 
@@ -90,11 +79,9 @@ namespace PrefabLightMapBaker
 
         static void OnBakeComplete()
         {
+            // 4. Clear progress & events 
+
             BakeFinished( );
-
-            // 4. Display time and clear events
-
-            Debug.Log($"[PrefabBaker] Bake complete in { ( Time.time - timer ).ToString("N1") } seconds");
 
             // 5. Fetch lightmaps, apply to prefab and save them in selected folder  
 
@@ -194,6 +181,10 @@ namespace PrefabLightMapBaker
             int i = lightmap_index;
 
             SceneLightmap slm = new SceneLightmap { lightMapIndex = lightmap_index };
+
+            // Create folder if it doesn't exist
+
+            Directory.CreateDirectory( Window.folder );
 
             // Update paths definitions 
 

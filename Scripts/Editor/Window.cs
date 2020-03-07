@@ -61,6 +61,11 @@ namespace PrefabLightMapBaker
             instance = null;
         }
 
+        private void OnDisable( )
+        {
+            instance = null;
+        }
+
         private void OnFocus()
         {
             RefreshVars();
@@ -100,8 +105,6 @@ namespace PrefabLightMapBaker
                                                             GUILayout.Space( 5 );
                 if( ! PrefabBakerGUI( ) ) return;
                                                             GUILayout.Space( 5 );
-                OverrideComponentsGUI( );
-                                                            GUILayout.Space( 5 );
                 EditorUtils.BoxGUI( ( ) => {
 
                     BakeSettingsGUI( );
@@ -132,28 +135,6 @@ namespace PrefabLightMapBaker
 
                     EditorUtility.DisplayDialog( "Info", README, "Close" );
             }
-        }
-
-        #endregion
-        // ----------------------------
-
-        #region Override Components
-
-        static public bool overrideComponents = false;
-
-        void OverrideComponentsGUI()
-        {
-            EditorUtils.BoxGUI( ( ) => {
-
-                overrideComponents = EditorGUILayout.ToggleLeft( " Override Nested Components", overrideComponents );
-
-                if( ! overrideComponents ) return;
-
-                GUILayout.Space( 5 );
-
-                PanelComponentsOverride.Draw( );
-
-            } );
         }
 
         #endregion
@@ -236,13 +217,27 @@ namespace PrefabLightMapBaker
 
         public static bool QuickBake = false;
 
+        public enum LightmapBake
+        {
+            Baked = LightmapBakeType.Baked,
+            Mixed = LightmapBakeType.Mixed
+        }
+
+        static LightmapBake lightCasting = LightmapBake.Baked;
+
+        public static LightmapBakeType LightBakeType => ( LightmapBakeType ) lightCasting;
+
         void BakeSettingsGUI()
         {
             QuickBake = EditorGUILayout.ToggleLeft( "Quick bake", QuickBake );
 
             GUILayout.Space( 5 );
-
+            
             AutoClean = EditorGUILayout.ToggleLeft( autoCleanLabel, AutoClean );
+
+            GUILayout.Space( 5 );
+
+            lightCasting = ( LightmapBake ) EditorGUILayout.EnumPopup( "Lights", lightCasting );
         }
 
         #endregion

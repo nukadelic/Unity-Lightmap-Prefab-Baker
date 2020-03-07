@@ -28,7 +28,7 @@ namespace PrefabLightMapBaker
             foreach (var light in target.GetComponentsInChildren<Light>())
             {
                 light.gameObject.isStatic = false;
-                light.lightmapBakeType = LightmapBakeType.Baked;
+                light.lightmapBakeType = Window.LightBakeType;
             }
         }
 
