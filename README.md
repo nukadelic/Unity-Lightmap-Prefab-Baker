@@ -7,7 +7,7 @@ If you want to buy me a beer
   
 ## Screenshots
 
-| Interface | Example Bake Dark Scene | Lightmap files after bake |
+| Interface | Example Bake Dark Scene Settings | Lightmap files after bake |
 |------------|-------------|-------------|
 | <img src="https://raw.githubusercontent.com/nukadelic/Unity-Lightmap-Prefab-Baker/master/Images~/image1.png" width="250"> | <img src="https://raw.githubusercontent.com/nukadelic/Unity-Lightmap-Prefab-Baker/master/Images~/image2.png" width="250"> | <img src="https://raw.githubusercontent.com/nukadelic/Unity-Lightmap-Prefab-Baker/master/Images~/image3.png" width="250"> | 
 
