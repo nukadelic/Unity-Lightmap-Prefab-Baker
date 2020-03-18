@@ -37,7 +37,7 @@ Unity will bake lightmaps for the current active scene, the resulted image files
 
 ## Installation
 
-Simply download the **unitypackage** file from [here](https://github.com/nukadelic/Unity-Lightmap-Prefab-Baker)  
+Simply download the **unitypackage** file from [here](https://github.com/nukadelic/Unity-Lightmap-Prefab-Baker/releases)  
 
 **Or** add the following line to **manifest.json** file in your project packages folder (`UnityProject/Packages/manifest.json`)
 ```
