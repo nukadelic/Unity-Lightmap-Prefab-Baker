@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿#if UNITY_EDITOR
+
+using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
@@ -177,6 +179,11 @@ namespace PrefabLightMapBaker
 
         public static Texture2D SaveLightmapAsset( string copyFrom, string saveTo )
         {
+            if( saveTo.Contains(Application.dataPath) )
+            {
+                saveTo.Replace( Application.dataPath, "" );
+            }
+
             UpdateAsset( copyFrom );
             var importer = AssetImporter.GetAtPath( copyFrom ) as TextureImporter;
             importer.isReadable = true;
@@ -279,3 +286,5 @@ namespace PrefabLightMapBaker
         }
     }
 }
+
+#endif

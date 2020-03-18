@@ -1,4 +1,5 @@
-﻿
+﻿#if UNITY_EDITOR
+
 using System.IO;
 using System.Linq;
 using System.Collections.Generic;
@@ -400,3 +401,5 @@ namespace PrefabLightMapBaker
         // ----------------------------
     }
 }
+
+#endif
