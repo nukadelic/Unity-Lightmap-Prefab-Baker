@@ -1,7 +1,7 @@
 {
     "name": "com.nukadelic.prefabbaker",
     "displayName": "Prefab Lightmap Baker",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "unity": "2019.1",
     "description": "More info at : https://github.com/nukadelic/Unity-Lightmap-Prefab-Baker",
     "keywords": ["Prefab", "Lightmap", "Bake", "Baker"],
